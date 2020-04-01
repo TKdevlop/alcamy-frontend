@@ -1,0 +1,667 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.rdt {
+  position: relative;
+}
+.rdt .rdtPicker {
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
+  transition: all 150ms linear;
+  margin-top: -20px;
+  visibility: hidden;
+  display: block;
+  opacity: 0;
+}
+.rdt.rdtOpen .rdtPicker {
+  opacity: 1;
+  visibility: visible;
+  margin-top: 0;
+}
+.rdt input.form-control {
+  border: 0;
+  background-image: linear-gradient(#9c27b0, #9c27b0),
+    linear-gradient(#d2d2d2, #d2d2d2);
+  background-size: 0 2px, 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center bottom, center calc(100% - 1px);
+  background-color: rgba(0, 0, 0, 0);
+  transition: background 0s ease-out;
+  float: none;
+  box-shadow: none;
+  border-radius: 0;
+  font-weight: 400;
+  width: 100%;
+  height: 36px;
+  padding: 0px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  display: block;
+  width: 100%;
+  color: #555;
+}
+.rdt input.form-control:focus {
+  outline: none;
+  background-image: linear-gradient(#9c27b0, #9c27b0),
+    linear-gradient(#d2d2d2, #d2d2d2);
+  background-size: 100% 2px, 100% 1px;
+  box-shadow: none;
+  transition-duration: 0.3s;
+}
+
+.rdtPicker {
+  display: none;
+  position: absolute;
+  width: 260px;
+  padding: 4px;
+  margin-top: 1px;
+  z-index: 99999 !important;
+  background: #fff;
+  border-radius: 0.125rem;
+  box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  min-width: 160px;
+}
+.rdtPicker:before {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  content: "";
+  top: -5px;
+  left: 10px;
+  right: auto;
+  color: #ffffff;
+  border-bottom: 0.4em solid;
+  border-right: 0.4em solid transparent;
+  border-left: 0.4em solid transparent;
+}
+.rdtPicker:after {
+  border-bottom: 0.4em solid #ffffff;
+  border-right: 0.4em solid transparent;
+  border-left: 0.4em solid transparent;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: -5px;
+  left: 10px;
+}
+
+.rdtPicker {
+  display: block;
+  top: 40px;
+}
+
+.rdtStatic .rdtPicker {
+  box-shadow: none;
+  position: static;
+}
+
+.rdtPicker .rdtTimeToggle {
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.rdtPicker table {
+  width: 100%;
+  margin: 0;
+  border-color: #ffffff !important;
+  border-collapse: collapse;
+}
+
+.rdtPicker td,
+.rdtPicker th {
+  text-align: center;
+  padding: 1px;
+}
+
+.rdtPicker td {
+  cursor: pointer;
+}
+
+.rdtDay {
+  height: 30px;
+  line-height: 33px;
+  width: 30px;
+  text-align: center;
+  padding: 0px;
+  border-radius: 50%;
+}
+.rdtDay.rdtToday.rdtActive,
+.rdtDay.rdtActive,
+.rdtDay.rdtActive:hover {
+  background-color: #9c27b0 !important;
+  color: #ffffff;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(156, 39, 176, 0.4);
+}
+
+.rdtDays tr .dow {
+  border-bottom: 1px solid #e3e3e3;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: inherit;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+.rdtDays tr .rdtOld,
+.rdtDays tr .rdtNew {
+  color: #bdbdbd;
+}
+
+.rdtPicker td.rdtDay:hover,
+.rdtPicker td.rdtHour:hover,
+.rdtPicker td.rdtMinute:hover,
+.rdtPicker td.rdtSecond:hover,
+.rdtPicker .rdtTimeToggle:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+
+.rdtPicker td.rdtToday {
+  position: relative;
+}
+
+.rdtPicker td.rdtActive.rdtToday:before {
+  border-bottom-color: #fff;
+}
+
+.rdtPicker td.rdtDisabled,
+.rdtPicker td.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker td span.rdtOld {
+  color: #999999;
+}
+
+.rdtPicker td span.rdtDisabled,
+.rdtPicker td span.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker .dow {
+  width: 14.2857%;
+  border-bottom: none;
+}
+
+.rdtPicker th.rdtSwitch {
+  width: 50px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.rdtPicker th.rdtNext,
+.rdtPicker th.rdtPrev {
+  font-size: 21px;
+  vertical-align: top;
+  border-radius: 50%;
+  line-height: 33px;
+}
+
+.rdtPicker .dow,
+.rdtPicker th.rdtSwitch,
+.rdtPicker th.rdtNext,
+.rdtPicker th.rdtPrev,
+.rdtPicker .rdtTimeToggle {
+  color: #9c27b0;
+}
+
+.rdtPrev span,
+.rdtNext span {
+  display: block;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.rdtPicker th.rdtDisabled,
+.rdtPicker th.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker thead tr:first-child th {
+  cursor: pointer;
+}
+
+.rdtPicker thead tr:first-child th:hover {
+  background: #eeeeee;
+}
+
+.rdtPicker button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.rdtPicker button:hover {
+  background-color: #eee;
+}
+
+.rdtPicker thead button {
+  width: 100%;
+  height: 100%;
+}
+td.rdtMonth,
+td.rdtYear {
+  height: 50px;
+  width: 25%;
+  cursor: pointer;
+}
+
+td.rdtMonth:hover,
+td.rdtYear:hover {
+  background: #eee;
+}
+
+.rdtCounters {
+  display: inline-block;
+}
+
+.rdtCounters > div {
+  float: left;
+  width: 40px;
+  font-weight: inherit;
+  margin: 3px;
+  border-radius: 50%;
+}
+
+.rdtCounters .rdtCounterSeparator {
+  width: 0;
+  border: 1px solid transparent;
+}
+
+.rdtCounter {
+  height: 100px;
+}
+
+.rdtCounter {
+  width: 40px;
+}
+.rdtCounter .rdtCount {
+  padding: 7px;
+  height: 40px;
+  border: 1px solid transparent;
+}
+
+.rdtCounters .rdtCounter:last-child .rdtCount {
+  color: #9c27b0;
+  border-radius: 50%;
+  border: 1px solid #9c27b0;
+}
+
+.rdtCounterSeparator {
+  padding: 7px;
+  line-height: 100px;
+}
+
+.rdtCounter .rdtBtn {
+  line-height: 40px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50%;
+  color: #eeeeee;
+  -webkit-transition: all 60ms ease-in;
+  -moz-transition: all 60ms ease-in;
+  -o-transition: all 60ms ease-in;
+  -ms-transition: all 60ms ease-in;
+  transition: all 60ms ease-in;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.rdtCounter .rdtBtn:hover {
+  background: #eee;
+  color: #797979;
+}
+
+.rdtCounter .rdtCount {
+  font-size: inherit;
+  line-height: 25px;
+}
+
+.rdtMilli {
+  vertical-align: middle;
+  padding-left: 8px;
+  width: 48px;
+}
+
+.rdtMilli input {
+  width: 100%;
+  font-size: inherit;
+  margin-top: 37px;
+}
+
+.rdtMonths,
+.rdtYears {
+  padding-bottom: 10px;
+}
+.rdtMonths .rdtMonth,
+.rdtMonths .rdtYear,
+.rdtYears .rdtMonth,
+.rdtYears .rdtYear {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
+  margin: 3px 3px;
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+}
+.rdtMonths .rdtMonth.rdtActive,
+.rdtMonths .rdtYear.rdtActive,
+.rdtYears .rdtMonth.rdtActive,
+.rdtYears .rdtYear.rdtActive {
+  background-color: #9c27b0 !important;
+  color: #ffffff;
+}
+/* body {
+  background: #181a1b !important;
+} */
+
+::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 20px;
+  width: 10px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+
+  background: linear-gradient(60deg, #00acc1, #00abc1a8);
+}
+/* ::-webkit-scrollbar-thumb {
+  background-color: #808080;
+  background: url("http://www.topdesignmag.com/wp-content/uploads/2010/12/137.jpg");
+} */
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.strike {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.strike > span {
+  position: relative;
+  display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9999px;
+  height: 1px;
+  background: #eee;
+}
+
+.strike > span:before {
+  right: 100%;
+  margin-right: 10px;
+}
+
+.strike > span:after {
+  left: 100%;
+  margin-left: 10px;
+}
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 10000; /* Sit on top */
+  padding-top: 100px;
+  padding-bottom: 50px;
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90vw;
+  max-height: 75vh;
+  /* height: 100%; */
+  /* object-fit: contain; */
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+pre {
+  margin: 0px !important;
+}
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: red;
+  position: fixed;
+  z-index: 10314;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px red, 0 0 5px red;
+  opacity: 1;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.stagevsproduct {
+  text-align: center;
+  margin-top: 10px;
+  overflow: hidden;
+}
