@@ -14,9 +14,9 @@ import { useSnackbar } from "notistack";
 //assets
 import BG3 from "assets/full-screen-image-3.jpg";
 import httpClient from "components/httpClient";
-import { withStyles, WithStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-const styles = (theme: Theme) => ({
+const useStyles = makeStyles(theme => ({
   outerDiv: {
     display: "grid",
     justifyContent: "center",
@@ -70,12 +70,12 @@ const styles = (theme: Theme) => ({
     marginTop: -12,
     marginLeft: -12
   }
-});
+}));
 export interface User {
   email: string;
   token: string;
 }
-interface Props extends RouteComponentProps, WithStyles {
+interface Props extends RouteComponentProps {
   setUser: (user: User | false) => void;
 }
 const userDataSchema = {
@@ -98,7 +98,7 @@ const userFormErrorStateSchema = {
   }
 };
 const Login: React.FC<Props> = props => {
-  const { classes } = props;
+  const classes = useStyles();
   const [formState, setFormState] = useState<"register" | "login">("register");
   const [formErrorState, setFormErrorState] = useState<any>(
     userFormErrorStateSchema
@@ -295,5 +295,4 @@ const Login: React.FC<Props> = props => {
   );
 };
 
-//@ts-ignore
-export default withRouter(withStyles(styles)(Login));
+export default withRouter(Login);

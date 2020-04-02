@@ -10,10 +10,8 @@ const App: React.FC = () => {
   return (
     <div className="App">
       {user ? (
-        //@ts-ignore
         <DashboardPage currentUser={user} setUser={setUser} />
       ) : (
-        //@ts-ignore
         <RegisterPage setUser={setUser} />
       )}
     </div>

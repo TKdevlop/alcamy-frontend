@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { User } from "pages/RegisterPage";
 interface Props extends RouteComponentProps {
   currentUser: User;
@@ -31,4 +31,4 @@ const DashboardPage: React.FC<Props> = props => {
     </div>
   );
 };
-export default DashboardPage;
+export default withRouter(DashboardPage);
